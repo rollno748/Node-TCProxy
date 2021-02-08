@@ -31,11 +31,11 @@ function TcpProxy(proxyPort, serviceHost, servicePort, options) {
     this.servicePorts = parse(servicePort);
     this.serviceHostIndex = -1;
     this.options = Object.assign({
-        quiet: false,
-        pfx: require.resolve('./cert.pfx'),
-        passphrase: 'abcd',
-        rejectUnauthorized: true,
-        identUsers: []
+        // quiet: false,
+        // pfx: require.resolve('./cert.pfx'),
+        // passphrase: 'abcd',
+        // rejectUnauthorized: true,
+         identUsers: []
     }, options);
     this.proxyTlsOptions = {
         passphrase: this.options.passphrase,
