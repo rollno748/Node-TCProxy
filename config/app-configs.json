@@ -4,8 +4,7 @@
          "config_id":"pte-001",
          "app_name":"CAS",
          "proxy_desc":"my app desc",
-         "sourceHost":"localhost",
-         "sourcePort":8090,
+         "sourceHost":"bnpte10cisge100.dcb.diginsite.net",
          "targetHost":"localhost",
          "targetPort":"1304",
          "isConfigActive":true
@@ -14,10 +13,9 @@
          "config_id":"pte-002",
          "app_name":"CBS",
          "proxy_desc":"my app desc",
-         "sourceHost":"localhost",
-         "sourcePort":8090,
+         "sourceHost":"bnpte10cisge101.dcb.diginsite.net",
          "targetHost":"localhost",
-         "targetPort":"1304",
+         "targetPort":"1305",
          "isConfigActive":true
       }
    ]
