@@ -1,0 +1,24 @@
+{
+   "pte":[
+      {
+         "config_id":"pte-001",
+         "app_name":"CAS",
+         "proxy_desc":"my app desc",
+         "sourceHost":"localhost",
+         "sourcePort":8090,
+         "targetHost":"localhost",
+         "targetPort":"1304",
+         "isConfigActive":true
+      },
+      {
+         "config_id":"pte-002",
+         "app_name":"CBS",
+         "proxy_desc":"my app desc",
+         "sourceHost":"localhost",
+         "sourcePort":8090,
+         "targetHost":"localhost",
+         "targetPort":"1304",
+         "isConfigActive":true
+      }
+   ]
+}

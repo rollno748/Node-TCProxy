@@ -14,7 +14,8 @@ router.get('/', function (req, res) {
 
 // Configs API controller route
 router.get('/config', function (req, res) {
-  res.send('GET call for config')
+  //res.send('GET call for config')
+  res.json(global.gConfig);
 })
 
 router.post('/config', function (req, res) {
@@ -26,5 +27,5 @@ router.put('/config', function (req, res) {
 })
 
 
-//export this router to use in our index.js
+//export router to use in app.js
 module.exports = router
