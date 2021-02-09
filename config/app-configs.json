@@ -10,10 +10,10 @@
                 "ResponseDelay": 0,
                 "connectionRest": 0,
                 "numOfReadBufferBytesRef": 0,
-                "requestDelay": 0,
-                "targetPort": 1304
+                "requestDelay": 0
             },
             "proxy_desc": "my app desc",
+            "targetPort": 1304,
             "targetHost": "localhost"
         },
         "bnpte10cisge102.dcb.diginsite.net": {
@@ -26,11 +26,12 @@
                 "ResponseDelay": 0,
                 "connectionRest": 0,
                 "numOfReadBufferBytesRef": 0,
-                "requestDelay": 0,
-                "targetPort": 1304
+                "requestDelay": 0
             },
             "proxy_desc": "my app desc",
-            "targetHost": "localhost"
+            "targetPort": 1304,
+            "targetHost": "localhost1"
+
         }
     }
 }

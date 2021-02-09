@@ -1,4 +1,4 @@
-TCP - PRoxy
+# TCP-Proxy
 
 1. Start the TCP Proxy
 2. Stop the TCP Proxy
@@ -13,10 +13,10 @@ TCP - PRoxy
 
 ## Without Proxy
 
-  Client(Source) --> Destination (Target)
+  Client(Source A) --> Destination (Target B)
 
 ## With Proxy
-  Client(Source) --> TCPROXY(NodeJs) --> Destination (Target)
+  Client(Source A) --> TCPROXY(NodeJs X) --> Destination (TargetB )
   e.g, CASAPP -> lg17.net:80 (TCPROXY) -> ifx.net:12749
 
 

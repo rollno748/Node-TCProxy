@@ -28,8 +28,6 @@ app.listen(port, () => {
     configMap.set(myKey, jsonObj[myKey])
   }
 
-  var targetHosts = ["apache.org", "apache.org"];
-  var targetPorts = [8090, 8091];
 
   //Enabling proxy
   //exports.createProxy = proxy.createProxy;
