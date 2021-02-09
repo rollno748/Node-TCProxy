@@ -1,22 +1,36 @@
 {
-   "pte":[
-      {
-         "config_id":"pte-001",
-         "app_name":"CAS",
-         "proxy_desc":"my app desc",
-         "sourceHost":"bnpte10cisge100.dcb.diginsite.net",
-         "targetHost":"localhost",
-         "targetPort":"1304",
-         "isConfigActive":true
-      },
-      {
-         "config_id":"pte-002",
-         "app_name":"CBS",
-         "proxy_desc":"my app desc",
-         "sourceHost":"bnpte10cisge101.dcb.diginsite.net",
-         "targetHost":"localhost",
-         "targetPort":"1305",
-         "isConfigActive":true
-      }
-   ]
+    "pte": {
+        "bnpte10cisge100.dcb.diginsite.net": {
+            "app_name": "CAS",
+            "config_id": "pte-001",
+            "isConfigEnabled": true,
+            "options": {
+                "RequestBytesPerSec": 0,
+                "ResponseBytesPerSec": 0,
+                "ResponseDelay": 0,
+                "connectionRest": 0,
+                "numOfReadBufferBytesRef": 0,
+                "requestDelay": 0,
+                "targetPort": 1304
+            },
+            "proxy_desc": "my app desc",
+            "targetHost": "localhost"
+        },
+        "bnpte10cisge102.dcb.diginsite.net": {
+            "app_name": "CBS",
+            "config_id": "pte-002",
+            "isConfigEnabled": true,
+            "options": {
+                "RequestBytesPerSec": 0,
+                "ResponseBytesPerSec": 0,
+                "ResponseDelay": 0,
+                "connectionRest": 0,
+                "numOfReadBufferBytesRef": 0,
+                "requestDelay": 0,
+                "targetPort": 1304
+            },
+            "proxy_desc": "my app desc",
+            "targetHost": "localhost"
+        }
+    }
 }

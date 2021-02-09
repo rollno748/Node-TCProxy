@@ -5,9 +5,10 @@ const config = require('./config.js');
 
 // module variables
 const app = express()
-let configMap = new Map()
 const port = 3001
 const proxyPort = 9999
+
+configMap = new Map()
 
 // environment variables
 process.env.NODE_ENV = 'pte';
@@ -20,16 +21,16 @@ app.use('/', controller)
 app.listen(port, () => {
   console.log(`Node TCProxy Webservice is listening at http://localhost:${port}`);
 
-  var jsonArray = global.gConfig
-  jsonArray = JSON.parse(JSON.stringify(jsonArray));
-  jsonArray.forEach(function(element) {
-    configMap.set(element.sourceHost, element.targetHost+':'+element.targetPort)
-    //console.log("Source Host ::" + element.sourceHost +' Mapped Target ::'+ element.targetHost+':'+element.targetPort)
-  });
+  var jsonObj = global.gConfig
 
+  for(var myKey in jsonObj) {
+    //console.log("key:"+myKey+", value:"+JSON.stringify(jsonObj[myKey]));
+    configMap.set(myKey, jsonObj[myKey])
+  }
 
   var targetHosts = ["apache.org", "apache.org"];
   var targetPorts = [8090, 8091];
+
   //Enabling proxy
   //exports.createProxy = proxy.createProxy;
 
@@ -55,5 +56,5 @@ app.listen(port, () => {
 
   });
 
-  console.log(`Node TCProxy is listening at localhost:${port}`);
+  console.log(`Node TCProxy is listening at localhost:${proxyPort}`);
 })
