@@ -6,7 +6,7 @@ const config = require('./config.js');
 // module variables
 const app = express()
 const port = 3001
-const proxyPort = 9999
+const proxyPort = 3002
 
 configMap = new Map()
 
@@ -52,6 +52,4 @@ app.listen(port, () => {
     }
 
   });
-
-  console.log(`Node TCProxy is listening at localhost:${proxyPort}`);
 })
