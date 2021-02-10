@@ -31,7 +31,6 @@ app.listen(port, () => {
 
   //Enabling proxy
   //exports.createProxy = proxy.createProxy;
-
   var newProxy = proxy.createProxy(proxyPort, configMap, {
 
     upstream: function(context, data) {

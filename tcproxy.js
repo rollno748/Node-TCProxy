@@ -1,5 +1,4 @@
 var net = require('net');
-var tls = require('tls');
 var fs = require('fs');
 var util = require('util');
 
@@ -7,41 +6,29 @@ module.exports.createProxy = function(proxyPort, configMap) {
     return new TcpProxy(proxyPort, configMap);
 };
 
-
+function uniqueKey(socket) {
+    var key = socket.remoteAddress + ":" + socket.remotePort;
+    return key;
+}
 
 function TcpProxy(proxyPort, configMap) {
     this.proxyPort = proxyPort;
     this.configMap = configMap;
-    //console.log('Allow all users :: '+ this.listeningHost);
 
     for (var [key, value] of configMap.entries()) {
       console.log(key, value);
       //console.log('TcpProxy key : ' + key + ' TcpProxy val : ' + value);
       this.createListener();
     }
-    /*
-    if (this.options.identUsers.length !== 0) {
-        this.users = this.options.identUsers;
-        this.log('Only allow these users: '.concat(this.users.join(', ')));
-    } else {
-        this.log('Allow all users');
-    }
-    */
-
-    //this.createListener();
 }
 
 TcpProxy.prototype.createListener = function() {
     var self = this;
     self.server = net.createServer(function(socket) {
-        if (self.users) {
-            self.handleAuth(socket);
-        } else {
-            self.handleClient(socket);
-        }
+      self.handleClient(socket);
     });
 
-    self.server.listen(self.proxyPort, self.options.hostname);
+    self.server.listen(self.proxyPort, self.configMap);
 };
 
 
