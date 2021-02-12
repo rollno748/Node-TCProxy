@@ -4,16 +4,16 @@
   "description": "A NodeJS based TCP-Proxy",
   "main": "app.js",
   "scripts": {
-    "server": "nodemon app.js"
+    "server": "nodemon --inspect app.js"
   },
   "author": "mibrahim",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "index.js": "0.0.3",
     "lodash": "^4.17.20",
     "nodemon": "^2.0.7",
-    "package.json": "^2.0.1",
-    "swagger-ui-express": "^4.1.6"
+    "package.json": "^2.0.1"
   }
 }

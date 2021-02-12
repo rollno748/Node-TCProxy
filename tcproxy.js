@@ -18,25 +18,25 @@ function TcpProxy(proxyPort, configMap) {
     this.proxyPort = proxyPort;
     this.configMap = configMap;
 
-    for (var [key, value] of configMap.entries()) {
-      //console.log(key, value);
-      //console.log('TcpProxy key : ' + key + ' TcpProxy val %j: ', value);
-    }
-
     server.on("connection", function(socket){
-      var remoteAddress = socket.remoteAddress + ":" + socket.remotePort;
-      console.log('New client connection established ::'+ remoteAddress);
+      //var client = socket.remoteAddress.lastIndexOf(":") + ":" + socket.remotePort;
+      var clientHostnameArr = socket.remoteAddress.split(":");
+      var clientHostname = clientHostnameArr[clientHostnameArr.length - 1];
 
-      socket.on("data", function(d){
-        console.log("Data received from %s :: %s", remoteAddress,d);
-      });
-
+      if(configMap.has(clientHostname)){
+        socket.on("data", function(d){
+          var props = configMap.get(clientHostname)
+          console.log("Data received from %s :: %s", socket.remoteAddress,d);
+          console.log("Property :: %s", props);
+        });  
+      }
+    
       socket.on("close", function(){
-        console.log("Connection is closed for the server :: %s", remoteAddress);
+        //console.log("Connection is closed for the server :: %s", socket.remoteAddress.lastIndexOf(":"));
       });
 
       socket.on("error", function(err){
-        console.log("Error occurred for the server :: %s \n error ::",remoteAddress, err.message);
+        console.log("Error occurred for the server :: %s \n error ::",socket.remoteAddress.lastIndexOf(":"), err.message);
       });
 
     });

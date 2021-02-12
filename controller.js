@@ -1,5 +1,12 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+const router = express.Router();
+
+
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
 
 router.use(function timeLog (req, res, next) {
   console.log('  ' + new Date(Date.now()).toISOString() + '  ' + req.method+ '  ' + req.path)
@@ -14,12 +21,23 @@ router.get('/', function (req, res) {
 
 // Configs API controller route
 router.get('/config', function (req, res) {
-  //res.send('GET call for config')
-  res.json(global.gConfig);
+  res.json(Object.fromEntries(configMap));
 })
 
 router.post('/config', function (req, res) {
-  res.send('POST call for config')
+  var data = req.body;
+  console.log(data);
+  // var response = "";
+  // for(var myKey in jsonObj) {
+  //   if(!configMap.has(myKey)){
+  //     response="Configs already present, skipping activity";
+  //   }else {
+  //     console.log("key:"+myKey+", value:"+JSON.stringify(jsonObj[myKey]));
+  //     configMap.set(myKey, jsonObj[myKey])
+  //     response="Configs Added successfully";
+  //   }
+  // }
+    res.json(req.body);
 })
 
 router.put('/config', function (req, res) {

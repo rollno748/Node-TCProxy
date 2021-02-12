@@ -1,11 +1,14 @@
 const express = require('express');
-const controller = require('./controller')
+const controller = require('./controller');
 const proxy = require('./tcproxy');
 const config = require('./config.js');
+const router = express.Router();
+
+
 
 // module variables
 const app = express()
-const port = 3001
+const port = process.env.port || 3001;
 const proxyPort = 3002
 
 configMap = new Map()
@@ -15,7 +18,7 @@ process.env.NODE_ENV = 'pte';
 //console.log(`global.gConfig: ${JSON.stringify(global.gConfig, undefined, global.gConfig.json_indentation)}`);
 
 //Enabling router
-app.use('/', controller)
+app.use('/', controller);
 
 //App Running port
 app.listen(port, () => {

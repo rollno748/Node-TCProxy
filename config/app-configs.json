@@ -32,6 +32,23 @@
             "targetPort": 1304,
             "targetHost": "localhost1"
 
+        },
+        "127.0.0.1": {
+            "app_name": "Demo",
+            "config_id": "pte-003",
+            "isConfigEnabled": true,
+            "options": {
+                "RequestBytesPerSec": 0,
+                "ResponseBytesPerSec": 0,
+                "ResponseDelay": 0,
+                "connectionRest": 0,
+                "numOfReadBufferBytesRef": 0,
+                "requestDelay": 0
+            },
+            "proxy_desc": "my app desc",
+            "targetPort": 1304,
+            "targetHost": "localhost1"
+
         }
     }
 }
