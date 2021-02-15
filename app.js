@@ -1,20 +1,20 @@
 const express = require('express');
+const propReader = require('properties-reader');
 const controller = require('./controller');
 const proxy = require('./tcproxy');
-const config = require('./config.js');
+const config = require('./config/config.js');
+var envProperties = propReader('./config/application.properties');
 const router = express.Router();
 
 
 
 // module variables
 const app = express()
-const port = process.env.port || 3001;
-const proxyPort = 3002
+const port = envProperties.get('server.http.port');
+const proxyPort = envProperties.get('server.tcp.port');
 
 configMap = new Map()
 
-// environment variables
-process.env.NODE_ENV = 'pte';
 //console.log(`global.gConfig: ${JSON.stringify(global.gConfig, undefined, global.gConfig.json_indentation)}`);
 
 //Enabling router
@@ -22,10 +22,10 @@ app.use('/', controller);
 
 //App Running port
 app.listen(port, () => {
-  console.log(`Node TCProxy Webservice is listening at http://localhost:${port}`);
-
+  console.log(`Node Webservice is listening at http://localhost:${port}`);
   var jsonObj = global.gConfig
 
+  //Converts the config json to Map 
   for(var myKey in jsonObj) {
     //console.log("key:"+myKey+", value:"+JSON.stringify(jsonObj[myKey]));
     configMap.set(myKey, jsonObj[myKey])
@@ -50,7 +50,7 @@ app.listen(port, () => {
             servicePorts[i],
             proxySocket.remoteAddress,
             proxySocket.remotePort));
-        // use your own strategy to calculate i
+        // use your own strategy to calculate i 
         return i;
     }
 
