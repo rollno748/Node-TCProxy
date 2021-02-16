@@ -1,10 +1,12 @@
 const express = require('express');
 const propReader = require('properties-reader');
-const controller = require('./controller');
 const proxy = require('./tcproxy');
 const config = require('./config/config.js');
-var envProperties = propReader('./config/application.properties');
 const router = express.Router();
+var envProperties = propReader('./config/application.properties');
+var bodyParser = require('body-parser');
+
+
 
 
 
@@ -12,13 +14,17 @@ const router = express.Router();
 const app = express()
 const port = envProperties.get('server.http.port');
 const proxyPort = envProperties.get('server.tcp.port');
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json()); 
 
-configMap = new Map()
+global.configMap = new Map()
 
 //console.log(`global.gConfig: ${JSON.stringify(global.gConfig, undefined, global.gConfig.json_indentation)}`);
 
 //Enabling router
-app.use('/', controller);
+app.use('/', require('./routes/config'));
+app.use(express.json());
+
 
 //App Running port
 app.listen(port, () => {

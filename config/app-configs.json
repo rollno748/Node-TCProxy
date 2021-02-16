@@ -33,7 +33,7 @@
             "targetHost": "localhost1"
 
         },
-        "127.0.0.1": {
+        "192.168.1.1": {
             "app_name": "Demo",
             "config_id": "pte-003",
             "isConfigEnabled": true,
