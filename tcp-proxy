@@ -1,0 +1,74 @@
+#!/bin/sh
+#/usr/local/bin/npm run server 
+#/usr/local/bin/npm run dev
+
+NPMARGS="/usr/local/bin/npm run server"
+#PIDFILE="/var/run/tcp-proxy.pid"
+PIDFILE="/Users/mi185051/ibm/github/Node-TCProxy/tcp-proxy.pid"
+LOGDIR="/Users/mi185051/ibm/github/Node-TCProxy/logs/tcproxy.log"
+
+recursiveKill() { # Recursively kill a process and all subprocesses
+  CPIDS=$(pgrep -P $1);
+  for PID in $CPIDS
+  do
+    recursiveKill $PID
+  done
+  sleep 3 && kill -9 $1 2>/dev/null & # hard kill after 3 seconds
+  kill $1 2>/dev/null # try soft kill first
+}
+
+function start {
+  echo "Starting Node-TCProxy..."
+  if [ -f "$PIDFILE" ]; then
+    echo "TCProxy is already running according"
+  else
+    $NPMARGS > $LOGDIR 2>&1 &
+    PID=$!
+    echo $PID > $PIDFILE
+    echo "Started TCProxy with pid $PID - Logging to $LOGDIR"
+  fi
+}
+
+function stop {
+  echo "Stopping Node-TCProxy..."
+  if [ ! -f $PIDFILE ]; then
+    echo "Already stopped!"
+  else
+    PID=`cat $PIDFILE`
+    recursiveKill $PID
+    rm -f $PIDFILE
+    echo "Stopped TCProxy"
+  fi
+}
+
+function status {
+  if [ -f "$PIDFILE" ]; then
+    PID=`cat $PIDFILE`
+    echo "TCProxy is already running with pid $PID - Logging to $LOGDIR"
+  else
+    echo "TCProxy is not running"
+  fi
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    echo "stopping"
+    stop
+    echo "stopping complete"
+    ;;
+  restart)
+    stop
+    sleep 3
+    start
+    ;;
+  status)
+    status
+    ;;
+  *)
+    echo "Usage: tcp-proxy start|stop|restart|status" && exit 1
+    ;;
+esac
+
