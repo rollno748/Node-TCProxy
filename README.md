@@ -1,9 +1,6 @@
 # TCP-Proxy
 ## _Node JS based application for TCPProxy_
 
-Dillinger is a cloud-enabled, mobile-ready, offline-storage compatible,
-AngularJS-powered HTML5 Markdown editor.
-
 # Dependencies
 - Node v14.15.4 or Higher
 - Npm v6.14.10
