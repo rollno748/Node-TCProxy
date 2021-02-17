@@ -1,9 +1,9 @@
 #!/bin/sh
-#/usr/local/bin/npm run server 
-#/usr/local/bin/npm run dev
 
-NPMARGS="/usr/local/bin/npm run server"
+NPMARGS="/usr/local/bin/npm run dev"
+#NPMARGS="/usr/local/bin/npm run server"
 #PIDFILE="/var/run/tcp-proxy.pid"
+#LOGDIR="/app/logs/tcproxy/tcp.log"
 PIDFILE="/Users/mi185051/ibm/github/Node-TCProxy/tcp-proxy.pid"
 LOGDIR="/Users/mi185051/ibm/github/Node-TCProxy/logs/tcproxy.log"
 
